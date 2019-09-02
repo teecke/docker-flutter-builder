@@ -7,14 +7,12 @@ cfg = jplConfig('docker-flutter-builder', 'docker', '', [slack: '', email:'pedro
 String jenkinsVersion
 
 def publishDockerImage(String jenkinsVersion) {
+    echo "tbd"
+    /*
     docker.withRegistry("https://registry.hub.docker.com", 'teeckebot-docker-credentials') {
-        script (
-            sh '''for tag in $(cat build-tools.list); do
-                docker push teecke/docker-flutter-builder:${tag}
-            done
-            '''
-        )
+        echo "tbd"
     }
+    */
 }
 
 pipeline {
