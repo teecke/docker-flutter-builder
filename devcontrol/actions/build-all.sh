@@ -22,7 +22,7 @@ function buildDockerImage() {
 
     echo "# Building 'pedroamador/docker-flutter-builder:${imageTag}' docker image with '${platformTools}' platform tools and '${buildTools}' build tools"
     echo
-    docker build --build-arg PLATFORM_TOOLS="${platformTools}" --build-arg BUILD_TOOLS="${buildTools}" -t pedroamador/docker-flutter-builder:"${imageTag}" .
+    docker build --build-arg PLATFORM_TOOLS="${platformTools}" --build-arg BUILD_TOOLS="${buildTools}" -t teecke/docker-flutter-builder:"${imageTag}" .
 }
 
 # @description Build all docker images
