@@ -8,11 +8,13 @@ String jenkinsVersion
 
 def publishDockerImage(String jenkinsVersion) {
     docker.withRegistry("https://registry.hub.docker.com", 'teeckebot-docker-credentials') {
-        sh """#!/bin/bash
-        for tag in $(cat build-tools.list); do
-            docker push teecke/docker-flutter-builder:${tag}
-        done
-        """
+        script (
+            sh """#!/bin/bash
+            for tag in `cat build-tools.list`; do
+                docker push teecke/docker-flutter-builder:${tag}
+            done
+            """
+        )
     }
 }
 
