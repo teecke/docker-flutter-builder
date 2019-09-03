@@ -37,7 +37,6 @@ pipeline {
                     docker push teecke/docker-flutter-builder
                     '''
                 }
-                publishDockerImage(jenkinsVersion)
                 jplMakeRelease(cfg, true)
             }
             post {
