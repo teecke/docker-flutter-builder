@@ -7,7 +7,7 @@ cfg = jplConfig('docker-flutter-builder', 'docker', '', [slack: '', email:'pedro
 String jenkinsVersion
 
 def publishDockerImage(String jenkinsVersion) {
-    docker.image("teecke/jenkins-dind").push()
+    docker.image("teecke/docker-flutter-builder").push()
 }
 
 pipeline {
