@@ -4,13 +4,6 @@
 
 // Initialize global config
 cfg = jplConfig('docker-flutter-builder', 'docker', '', [slack: '', email:'pedroamador.rodriguez+teecke@gmail.com'])
-String jenkinsVersion
-
-def publishDockerImage(String jenkinsVersion) {
-    docker.withRegistry("https://registry.hub.docker.com", 'teeckebot-docker-credentials') {
-        sh 'docker push teecke/docker-flutter-builder'
-    }
-}
 
 pipeline {
     agent { label 'docker' }
@@ -38,9 +31,19 @@ pipeline {
         stage('Make release') {
             when { expression { cfg.BRANCH_NAME.startsWith('release/new') } }
             steps {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'teeckebot-docker-credentials',
+                                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                    sh '''docker login -u ${USERNAME} -p ${PASSWORD}
+                    docker push teecke/docker-flutter-builder
+                    '''
+                }
                 publishDockerImage(jenkinsVersion)
                 jplMakeRelease(cfg, true)
-                jplCloseRelease(cfg)
+            }
+            post {
+                always {
+                    sh 'docker logout'
+                }
             }
         }
     }
