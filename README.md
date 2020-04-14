@@ -1,3 +1,7 @@
+# DEPRECATED
+
+Please visit https://github.com/tpbtools/docker-flutter-builder
+
 # Flutter Build with Docker
 
 ## Objetive
