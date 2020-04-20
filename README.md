@@ -1,6 +1,6 @@
 # DEPRECATED
 
-Please visit https://github.com/tpbtools/docker-flutter-builder
+Please visit https://github.com/ayudadigital/docker-flutter-builder
 
 # Flutter Build with Docker
 
